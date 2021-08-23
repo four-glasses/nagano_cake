@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :admins
   namespace :admin do
+    resources :customers,only: [:index,:show,:edit,:update]
   	resources :genres,only: [:index,:create,:edit,:update, :show]
   end
   devise_for :customers
