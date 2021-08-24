@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  receive_status: 1
+  postage: 1
+  billing: 1
+  address: MyString
+  name: MyString
+  pay_status: 1
+  postal_code: 1
+
+two:
+  receive_status: 1
+  postage: 1
+  billing: 1
+  address: MyString
+  name: MyString
+  pay_status: 1
+  postal_code: 1
