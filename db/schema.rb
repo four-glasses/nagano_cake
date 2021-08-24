@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_23_101403) do
+ActiveRecord::Schema.define(version: 2021_08_24_062826) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -22,6 +22,12 @@ ActiveRecord::Schema.define(version: 2021_08_23_101403) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+  end
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "amount", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -44,13 +50,34 @@ ActiveRecord::Schema.define(version: 2021_08_23_101403) do
     t.index ["reset_password_token"], name: "index_customers_on_reset_password_token", unique: true
   end
 
+  create_table "deliveries", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "address", null: false
+    t.string "postal_code", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "genres", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "items", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "name", null: false
+    t.string "image_id", null: false
+    t.integer "non_taxed_price", null: false
+    t.boolean "sales_status", default: true, null: false
+    t.text "items_explanation", null: false
+  end
+
   create_table "order_details", force: :cascade do |t|
     t.integer "amount"
     t.integer "production_status"
     t.string "tax_price"
-  end  
-  create_table "genres", force: :cascade do |t|
-    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -65,16 +92,6 @@ ActiveRecord::Schema.define(version: 2021_08_23_101403) do
     t.integer "postal_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "items", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name", null: false
-    t.string "image_id", null: false
-    t.integer "non_taxed_price", null: false
-    t.boolean "sales_status", default: true, null: false
-    t.text "items_explanation", null: false
   end
 
 end
