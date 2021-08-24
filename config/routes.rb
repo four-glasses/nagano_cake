@@ -1,9 +1,24 @@
 Rails.application.routes.draw do
 
-  devise_for :admins
+  
+  
+  get 'orders/index'
+  get 'orders/show'
+    devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  
+  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
   namespace :admin do
+    root :to => 'homes#top'
+    resources :items, only: [:show, :index, :new, :create, :edit, :update]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
     resources :customers,only: [:index,:show,:edit,:update]
-  	resources :genres,   only: [:index,:create,:edit,:update, :show]
+    resources :genres,   only: [:index,:create,:edit,:update, :show]
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
@@ -21,4 +36,5 @@ Rails.application.routes.draw do
   patch "/customers/withdraw"  => "public/customers#withdraw"
 
   resource :customers, module: :public, :only => [:edit, :update]
+
 end
