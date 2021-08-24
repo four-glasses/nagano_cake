@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  production_status: 1
+  tax_price: MyString
+
+two:
+  amount: 1
+  production_status: 1
+  tax_price: MyString

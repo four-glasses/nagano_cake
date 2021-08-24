@@ -1,0 +1,17 @@
+<h1>商品一覧</h1>
+<h6>全<%= Item.count%>件</h6>
+<div class = "container">
+  <div class = "row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+
+    <!--% @items.each do |item| %-->
+    <div class = "col">
+      <div class = "card shadow-sm">
+        <%= image_tag "pexels-roman-odintsov-4553118.jpg", class: "img-fluid"%>
+      </div>
+      <p class="font-weight-bold">商品名</p>
+      <p class="font-weight-bold">¥10,000</p>
+    </div>
+    
+  </div>
+</div>
+<%= paginate @items %>
