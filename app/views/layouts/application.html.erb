@@ -2,17 +2,44 @@
 
 <html>
   <head>
-    <title>NaganoCake</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <h2 class="head-line title_h2 text-left">LOGO</h2>
+
+  <% if current_user_sign_in? %>
+  <p><%= link_to "商品一覧",admin_genres_path %></p>
+  <p><%= link_to "会員一覧",admin_genres_path %></p>
+  <p><%= link_to "注文履歴一覧",admin_genres_path %></p>
+  <p><%= link_to "ジャンル一覧",admin_genres_path %></p>
+  <p><%= link_to "ログアウト",admin_genres_path %></p>
+
+
+
+  <% else %>
+  <p><%= link_to "About",admin_genres_path %></p>
+  <p><%= link_to "商品一覧",admin_genres_path %></p>
+  <p><%= link_to "新規登録",admin_genres_path %></p>
+  <p><%= link_to "ログイン",admin_genres_path %></p>
+
+   <% end %>
+
+
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <script src="https://kit.fontawesome.com/47a676435d.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6f0d38cdd3.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+
   </head>
 
-  <body>
-    
-    <%= yield %>
+  <body id="wrapper">
+    <div id="header">
+    </div>
+    <div class="container">
+      <div id="flash">
+      </div>
+      <%= yield %>
+    </div>
   </body>
 </html>
