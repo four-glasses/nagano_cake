@@ -1,0 +1,31 @@
+
+<h4>注文履歴一覧</h4>
+	<thead>
+      <th>注文日</th>
+      <th>配送先</th>
+      <th>注文商品</th>
+      <th>支払い金額</th>
+      <th>ステータス</th>
+      <th>注文詳細</th>
+    </thead>
+	<tbody>
+		<% @orders.each do |order| %>
+		<tr>
+			<td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+			<td>
+				〒<%= order.postal_code %><br>
+				<%= order.address %><br>
+				<%= order.name %> 様
+			</td>
+			<td>
+				<% order.ordered_items.each do |item| %>
+					<%= item.product.name %>
+				<% end %>
+			</td>
+			<td><%= addTax(order.ordered_items.sum(:price)) %>円</td>
+			<td><%= link_to order_path(order), class: "btn btn-success" do %>表示する<% end %></td>
+		</tr>
+		<% end %>
+	</tbody>
+</table>
+</div>
