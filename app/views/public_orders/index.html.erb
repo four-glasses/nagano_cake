@@ -19,7 +19,7 @@
 			</td>
 			<td>
 				<% order.ordered_items.each do |item| %>
-					<%= item.product.name %>
+				  <%= item.product.name %>
 				<% end %>
 			</td>
 			<td><%= addTax(order.ordered_items.sum(:price)) %>円</td>
