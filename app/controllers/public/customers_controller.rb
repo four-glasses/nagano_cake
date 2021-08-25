@@ -1,12 +1,12 @@
 class CustomersController < ApplicationController
-  
+
   # ログインユーザー（カスタマー）に権限を限定
-  before_action :authenticate_user!
-  
+  before_action :authenticate_customer!
+
   # カスタマーのマイページ
   def show
     # ログインしてても他者のページには入れない
-    unless current_user.nil? || current_user.id == customers.id
+    unless current_customer.nil? || current_customer.id == customers.id
       flash[:error] = "認証に失敗しました"
       redirect_to "public/homes#top"
     end
