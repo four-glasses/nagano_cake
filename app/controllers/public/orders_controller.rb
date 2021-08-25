@@ -3,7 +3,7 @@ class Public::OrdersController < ApplicationController
 def index
   @customer = current_customer
   @orders = @customer.orders
-  unless current_customer.nil? || current_customer.id == @customer.id
+  unless current_customer.nil? 
     flash[:warning] = "アクセス権がありません"
     redirect_to orders_path(id: current_customer.id)
   end
@@ -11,7 +11,6 @@ end
 
 def comfirm
 @order = Order.find(params[:id])
-	# 他のuserのアクセス阻止
 		unless current_customer.nil? || current_customer.id == @order.customer_id
     		flash[:warning] = "アクセス権がありません"
 			redirect_to orders_path(id: current_customer.id)

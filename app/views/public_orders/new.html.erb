@@ -1,4 +1,4 @@
-<%= form_for(@order) do |f| %>
+<%= form_with model: @order do |form| %>
 
 <main>
   <h1>注文情報入力</h1>
@@ -16,7 +16,7 @@
 <div class="field">
   <%= check_box_tag :test1 %>
   <%= label_tag :test1, "ご自身の住所" %>
-  〒<%= current_user.postal_code %> <%= current_user.address %>
+  〒<%= current_customer.postal_code %> <%= current_customer.address %>
 
 </div>
 <div class="field">    
