@@ -1,4 +1,4 @@
-class Admins::OrdersController < ApplicationController
+class Admin::OrdersController < ApplicationController
   # before actionは後ほど追記
   
   def index
@@ -7,7 +7,7 @@ class Admins::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_details = @order.order_details
+    @order_items = @order.order_items
   end
   
   def total
@@ -16,11 +16,11 @@ class Admins::OrdersController < ApplicationController
   
   def update
     order = Order.find(params[:id])
-    order_details = order.order_details
+    order_items = order.order_items
     order.update(order_params)
     
     if order.order_status == "入金確認"
-       order_details.update_all(production_status:"制作待ち")
+       order_items.update_all(production_status:"制作待ち")
     end
     redirect_to admins_order_path(order.i)
     
