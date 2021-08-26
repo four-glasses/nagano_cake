@@ -4,6 +4,7 @@
   <head>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/6f0d38cdd3.js" crossorigin="anonymous"></script>
@@ -11,6 +12,7 @@
    
   </head>
 
+<<<<<<< HEAD
   <% if customer_signed_in? %>
     <body id="wrapper" style="background-color: white; font-family: HiraMinPro-W6; color: #000000;">
     <!-- ヘッダー -->
@@ -35,6 +37,22 @@
 
     <!-- Body部分 -->
     <div class="container" style="margin-top: 20px;">
+=======
+  <body id="wrapper">
+    <header>
+      <h2 class="head-line title_h2 text-left">LOGO</h2>
+      <!--管理者か顧客かで場合分け-->
+      <% if admin_signed_in? %>
+        <%= render "layouts/admin_header" %>
+      <% else %>
+        <%= render "layouts/public_header" %>
+      <% end %>
+    </header>
+
+    <div class="container">
+      <div id="flash">
+      </div>
+>>>>>>> 9629714b3985cffde846eb74b1f5056067b88b7c
       <%= yield %>
     </div>
 
