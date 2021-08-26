@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   end
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+
+
   root :to     => "public/homes#top"
   get "/about" => "public/homes#about"
   resources :items, module: :public, :only => [:index,:show]
@@ -35,6 +37,9 @@ Rails.application.routes.draw do
   resources :orders, module: :public, :only => [:index,:create,:new,:comfirm,:show,:complete]
 
   resource :customers, module: :public, :only => [:edit, :update]
+
+
+  resources :deliveries, module: :public, :only => [:index,:create,:edit,:update,:destroy]
 
 
 
