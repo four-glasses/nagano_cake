@@ -1,0 +1,82 @@
+<main>
+
+	<h1>ショッピングカート</h1>
+
+
+	<%= link_to cart_items_path, method: :delete do %>
+		<span class="btn btn-danger">カートを空にする</span>
+	<% end %>
+</div>
+
+<table class="table table-bordered">
+	<tr style="background:#dad7d7; border: 1px solid #fff;">
+		<th>商品名</th>
+		<th>単価</th>
+		<th>数量</th>
+		<th>小計</th>
+		<th></th>
+	</tr>
+	<% @sum=0 %>
+ <% @cart_items.each do |ci| %>
+	<tr>
+		<td>
+			<%= attachment_image_tag ci.item, :image, :fill, 50, 50 %>
+			<%= ci.item.name %>
+			<% @sum+=addTax(ci.item)* ci.amount %>
+		</td>
+		<td>
+ 			<%= hidden_field_tag :item_price, ci.item.price %>
+			<%= addTax(ci.item)* item.amount %>
+		</td>
+		<td>
+			<%= hidden_field_tag "items_id[#{ci.id}]", ci.item_id %>
+			<%= number_field_tag "amount[#{ci.id}]", item.amount, in: 1..10 %>
+		</td>
+		<td>
+			<%= hidden_field_tag "tax_price[#{ci.id}]", addTax(ci.item) %>
+			<%= addTax(ci.item) %>
+		</td>
+		<td><%= link_to '削除する', cart_item_path(ci), method: :delete %></td>
+	</tr>
+ <% end %>
+</table>
+
+<div class="row">
+	<div class="col-xs-4">
+		<%= link_to root_path do %>
+			<span class="btn btn-info glyphicon glyphicon-chevron-left">買い物を続ける</span>
+		<% end %>
+	</div>
+	<div class="col-xs-4 pull-right">
+		<table class="table table-striped">
+			<tr style="background:#dad7d7; border: 1px solid #fff;"><th>合計金額</th></tr>
+			<tr><td><%= @sum %></td></tr>
+		</table>
+
+	</div>
+
+</div>
+
+
+
+<!-- カートに商品が入っていたら表示させる -->
+
+	<% if @cart_items.blank? %>
+		<% else %>
+		<div class="text-center">
+			<%= link_to '情報入力に進む', new_order_path, class:"btn btn-success" %>
+		</div>
+	<% end %>
+
+</div>
+
+
+
+<script>
+	$(function () {
+	$('[data-toggle="tooltip"]').tooltip();
+});
+</script>
+
+
+</main>

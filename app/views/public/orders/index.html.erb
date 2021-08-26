@@ -19,10 +19,11 @@
 			</td>
 			<td>
 				<% order.ordered_items.each do |item| %>
-				  <%= item.product.name %>
+				  <%= item.items.name %>
 				<% end %>
 			</td>
-			<td><%= addTax(order.ordered_items.sum(:price)) %>円</td>
+			<td><%= addTax(order.ordered_items.sum(:tax_price)) %>円</td>
+			<td><%= receive_status %></td>
 			<td><%= link_to order_path(order), class: "btn btn-success" do %>表示する<% end %></td>
 		</tr>
 		<% end %>
