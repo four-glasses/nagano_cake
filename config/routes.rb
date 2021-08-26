@@ -36,6 +36,4 @@ Rails.application.routes.draw do
 
   resource :customers, module: :public, :only => [:edit, :update]
 
-
-
 end
