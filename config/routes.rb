@@ -38,9 +38,5 @@ Rails.application.routes.draw do
 
   resource :customers, module: :public, :only => [:edit, :update]
 
-
   resources :deliveries, module: :public, :only => [:index,:create,:edit,:update,:destroy]
-
-
-
 end
