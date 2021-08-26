@@ -23,6 +23,7 @@ class Public::CustomersController < ApplicationController
   end
 
   def update
+    
   end
 
   def unsubscribe
@@ -34,6 +35,11 @@ class Public::CustomersController < ApplicationController
     reset_session
     flash[:notice] = "#{@customer.first_name}さん、今までご利用いただきありがとうございました！"
     redirect_to destroy_customer_session_path
+  end
+  
+  private
+  def customer_params
+    params.require(:customer).permit( :last_name, :last_name_kana, :first_name, :first_name_kana, :email,)
   end
 
 end
