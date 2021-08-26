@@ -1,1 +1,54 @@
-<h1 class = "active">マイページ</h1>
+<h1>マイページ</h1>
+<div class = "row g-3">
+  <div class = "row col-7">
+    <div class = "col-6">
+      <h4 class = "m-3">登録情報</h4>
+    </div>
+    <div class = "col-6">
+      <%= link_to "編集する", edit_customers_path, class: "btn btn-success m-3"%>
+    </div>
+    <div class = "col-12">
+      <table class="table table-bordered bordered-dark">
+        <tbody>
+          <tr>
+            <th class = "table-active col-3">氏名</th>
+            <td class = "col-9"><%= @customer.last_name %> <%= @customer.first_name %></td>
+          </tr>
+          <tr>
+            <th class = "table-active">カナ</th>
+            <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
+          </tr>
+          <tr>
+            <th class = "table-active">郵便番号</th>
+            <td><%= @customer.postal_code %></td>
+          </tr>
+          <tr>
+            <th class = "table-active">住所</th>
+            <td><%= @customer.address %></td>
+          </tr>
+          <tr>
+            <th class = "table-active">電話番号</th>
+            <td><%= @customer.telephone %></td>
+          </tr>
+          <tr>
+            <th class = "table-active">メールアドレス</th>
+            <td><%= @customer.email %></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class = "col-6">
+      <h4 class = "m-3">配送先</h4>
+    </div>
+    <div class = "col-6">
+      <%= link_to "一覧を見る", class: "btn btn-primary m-3" %>
+    </div>
+    <div class = "col-6">
+      <h4 class = "m-3">注文履歴</h4>
+    </div>
+    <div class = "col-6">
+      <%= link_to "一覧を見る", orders_index_path, class: "btn btn-primary m-3" %>
+    </div>
+  </div>
+  <div class = "col-5"></div>
+</div>

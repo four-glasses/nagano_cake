@@ -4,6 +4,7 @@ class CreateDeliveries < ActiveRecord::Migration[5.2]
       t.string :name,        null: false
       t.string :address,     null: false
       t.string :postal_code, null: false
+      t.string :customer_id, null: false
 
       t.timestamps
     end
