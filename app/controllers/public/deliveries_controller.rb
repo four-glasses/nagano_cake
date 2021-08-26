@@ -1,3 +1,4 @@
+
 class Public::DeliveriesController < ApplicationController
  def index
   	@shipping_addresses = current_customer.deliveries

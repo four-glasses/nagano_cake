@@ -10,7 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 2021_08_24_111856) do
+=======
+
+ActiveRecord::Schema.define(version: 2021_08_25_104718) do
+
+>>>>>>> cf3ae52a3a2663605399d1f5530e454315c23181
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,6 +34,8 @@ ActiveRecord::Schema.define(version: 2021_08_24_111856) do
     t.integer "amount", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_id", null: false
+    t.integer "item_id", null: false
   end
 
   create_table "customers", force: :cascade do |t|
@@ -56,7 +64,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_111856) do
     t.string "postal_code", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "customer_id"
+    t.integer "customer_id", null: false
   end
 
   create_table "genres", force: :cascade do |t|
@@ -73,14 +81,17 @@ ActiveRecord::Schema.define(version: 2021_08_24_111856) do
     t.integer "non_taxed_price", null: false
     t.boolean "sales_status", default: true, null: false
     t.text "items_explanation", null: false
+    t.integer "genre_id", null: false
   end
 
-  create_table "order_details", force: :cascade do |t|
-    t.integer "amount"
-    t.integer "production_status"
-    t.string "tax_price"
+  create_table "order_items", force: :cascade do |t|
+    t.integer "amount", null: false
+    t.integer "production_status", null: false
+    t.integer "tax_price", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
   end
 
   create_table "orders", force: :cascade do |t|
@@ -93,6 +104,7 @@ ActiveRecord::Schema.define(version: 2021_08_24_111856) do
     t.integer "postal_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "customer_id", null: false
   end
 
 end

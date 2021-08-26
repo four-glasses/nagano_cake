@@ -1,0 +1,12 @@
+<!--顧客がログインしているか否かで場合分け-->
+<% if customer_signed_in? %>
+  <p><%= link_to "マイページ", customers_my_page_path %></p>
+  <p><%= link_to "商品一覧", items_path%></p>
+  <p><%= link_to "カート"%></p>
+  <p><%= link_to "ログアウト", destroy_customer_session_path, method: :delete %></p>
+<% else %>
+  <p><%= link_to "About", about_path %></p>
+  <p><%= link_to "商品一覧", items_path %></p>
+  <p><%= link_to "新規登録",  new_customer_registration_path %></p>
+  <p><%= link_to "ログイン", new_customer_session_path %></p>
+<% end %>
