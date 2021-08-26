@@ -1,4 +1,4 @@
-class Admins::OrderDetailsController < ApplicationController
+class Admin::OrderDetailsController < ApplicationController
   # before_actionは後日記載
 def update
 	order_detail =
