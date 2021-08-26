@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
 
     def after_sign_in_path_for(resource)
       if customer_signed_in?
-        customers_path(resource)
+        customers_my_page_path
       else
         admin_top_path
       end
@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_customer
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def set_cart_item
