@@ -31,10 +31,10 @@
                 </tr>
 
 
-                <!--<tr>-->
-                <!--  <th>ジャンル</th>-->
-                <!--  <td>%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %></td>-->
-                <!--</tr>-->
+                <tr>
+                  <th>ジャンル</th>
+                  <td><%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %></td>
+                </tr>
 
                 <tr>
                   <th>税抜価格</th>
