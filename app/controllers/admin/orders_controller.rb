@@ -1,4 +1,4 @@
-class Admins::OrdersController < ApplicationController
+class Admin::OrdersController < ApplicationController
   # before actionは後ほど追記
   
   def index
