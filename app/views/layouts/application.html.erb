@@ -4,6 +4,7 @@
   <head>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/6f0d38cdd3.js" crossorigin="anonymous"></script>
@@ -20,11 +21,12 @@
         <%= render "layouts/public_header" %>
       <% end %>
     </header>
-    
+
     <div class="container">
       <div id="flash">
       </div>
       <%= yield %>
     </div>
+     <%= render "layouts/footer" %>
   </body>
 </html>
