@@ -31,6 +31,7 @@ Rails.application.routes.draw do
   patch "/customers/withdraw"  => "public/customers#withdraw"
 
   resources :orders, module: :public, :only => [:index,:create,:new,:comfirm,:show,:complete]
+  resources :cart_items, module: :public, :only => [:index,:create,:update,:destroy,:destroy_all]
 
   resource :customers, module: :public, :only => [:edit, :update]
 
