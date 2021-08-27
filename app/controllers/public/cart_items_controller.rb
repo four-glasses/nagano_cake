@@ -38,15 +38,13 @@ end
 def create
     @cart_item = CartItem.new(item_params)
     @cart_item.customer_id = current_customer.id
-    #税抜の小計価格を設定
-    @cart_item.items = @cart_item.items.tax_price * @cart_item.amount
     @cart_item.save
     redirect_to cart_items_path
 end
 
  private
     def item_params
-      params.require(:cart_item).permit(:customer_id, :items_id, :amount, :tax_price)
+      params.permit(:customer_id, :item_id, :amount, :tax_price)
     end
 
 end
