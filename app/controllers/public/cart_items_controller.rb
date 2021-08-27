@@ -44,7 +44,7 @@ end
 
  private
     def item_params
-      params.require(:cart_item).permit(:customer_id, :items_id, :amount, :tax_price)
+      params.permit(:customer_id, :item_id, :amount, :tax_price)
     end
 
 end

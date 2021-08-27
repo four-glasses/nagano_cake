@@ -1,15 +1,18 @@
-<h1>商品一覧</h1>
-<h6>全<%= Item.count%>件</h6>
+<div class = "row" style = "align-items: center;">
+  <h1 class = "col-2">商品一覧</h1>
+  <h6 class = "col-2">(全<%= Item.count%>件)</h6>
+</div>
+
 <div class = "container">
-  <div class = "row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+  <div class = "row row-cols-1 row-cols-sm-2 row-cols-md-3 ">
 
     <% @items.each do |item| %>
-    <div class = "col">
+    <div class = "col-4">
       <div class = "card shadow-sm">
-        <%= attachment_image_tag item, :image, class: "img-fluid"%>
+        <%= attachment_image_tag item, :image, :style=>"background-position: center;", size: "340x230" %>
       </div>
-      <p class="font-weight-bold"><%= item.name %></p>
-      <p class="font-weight-bold"><%= item.non_taxed_price %></p>
+      <p class="font-weight-bold"><%= link_to item.name, item_path(item) %></p>
+      <p class="font-weight-bold"><%= item.non_taxed_price %>円</p>
     </div>
     <% end %>
 
