@@ -9,24 +9,54 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/6f0d38cdd3.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="//jpostal-1006.appspot.com/jquery.jpostal.js"></script>
+   
   </head>
 
-  <body id="wrapper">
-    <header>
-      <h2 class="head-line title_h2 text-left">LOGO</h2>
-      <!--管理者か顧客かで場合分け-->
-      <% if admin_signed_in? %>
-        <%= render "layouts/admin_header" %>
-      <% else %>
-        <%= render "layouts/public_header" %>
-      <% end %>
-    </header>
 
-    <div class="container">
-      <div id="flash">
-      </div>
+  <% if customer_signed_in? %>
+    <body id="wrapper" style="background-color: white; font-family: HiraMinPro-W6; color: #000000;">
+    <!-- ヘッダー -->
+    <div id="header">
+      <%= render "layouts/header" %>
+    </div>
+
+    <!-- Body部分 -->
+    <div class="container" style="margin-top: 20px;">
       <%= yield %>
     </div>
-     <%= render "layouts/footer" %>
-  </body>
+
+    <!-- Footer -->
+    <%= render "layouts/footer" %>
+    </body>
+  <% elsif admin_signed_in? %>
+    <body id="wrapper" style="background-color: #EEEEEE; font-family: HiraMinPro-W6; color: #000000;">
+    <!-- ヘッダー -->
+    <div id="header">
+      <%= render "layouts/header" %>
+    </div>
+
+    <!-- Body部分 -->
+    <div class="container" style="margin-top: 20px;">
+      <%= yield %>
+    </div>
+
+    <!-- Footer -->
+    <%= render "layouts/footer" %>
+    </body>
+  <% else %>
+    <body id="wrapper" style="background-color: white; font-family: HiraMinPro-W6; color: #000000; ">
+    <!-- ヘッダー -->
+    <div id="header">
+      <%= render "layouts/header" %>
+    </div>
+
+    <!-- Body部分 -->
+    <div class="container" style="margin-top: 20px;">
+      <%= yield %>
+    </div>
+
+    <!-- Footer -->
+    <%= render "layouts/footer" %>
+    </body>
+  <% end %>
 </html>
