@@ -2,7 +2,7 @@ class Admin::OrderItemsController < ApplicationController
   # before_actionは後日記載
 def update
 	order_item =
-	OrderDetail.find(params[:id])
+	OrderItem.find(params[:id])
 	order_item.update(order_item_params)
 
 	case order_item.production_status
@@ -13,12 +13,12 @@ def update
 			order_item.order.update(receive_status: "発送準備中")
 		end
 	end
-	redirect_to admins_order_path(order_item.order.id)
+	redirect_to admin_order_path(order_item.order.id)
 end
 
 	private
  def order_item_params
 	 params.require(:order_item).permit(:production_status)
  end
-  
+
 end
