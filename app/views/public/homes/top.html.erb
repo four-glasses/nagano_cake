@@ -1,7 +1,29 @@
 <div class = "container">
-  <div class = "p-4 p-md-5 md-4 ">
-    <h1>
-      <font face = "F66筆みょうほん">TOP</font>
-    </h1>
+  <div class = "row">
+    <div class = "col-12" style = "position: relative;" >
+      <%= image_tag "ale-maciel-40YfD1kbYRU-unsplash.jpg" , class:"d-block mx-auto",size: "660x440", :style=>" opacity: 1;" %>
+      <p style = "position: absolute; top: 50%;left: 50%; font-size:1.4em; -ms-transform: translate(-50%,-50%); -webkit-transform: translate(-50%,-50%); transform: translate(-50%,-50%);font-family :F66筆みょうほん, sans-serif; margin:0; padding:0; color: rgba(240, 220, 240, 0.9);">
+        ようこそ、ながのCAKEへ！</br>
+        このサイトは、ケーキ販売のECサイトになります。</br>
+        会員でない方も商品の閲覧はできますが、</br>
+        購入には会員登録が必要になります。</p>
+    </div>
+    <div class = "col-12">
+      <h1>
+        <font face = "F66筆みょうほん">新着商品</font>
+      </h1>
+      <div class = "row">
+        <% @newitems.each do |ni| %>
+        <div class = "col-3 m-3">
+          <div class = "card shadow-sm">
+            <%= attachment_image_tag ni, :image, size: "300x200" %>
+          </div>
+          <p class="font-weight-bold"><%= link_to ni.name, item_path(ni) %></p>
+          <p class="font-weight-bold"><%= ni.non_taxed_price %>円</p>
+        </div>
+        <% end %>
+      </div>
+      <p class = "text-right"><%= link_to "全ての商品を見る>>", items_path %></p>
+    </div>
   </div>
 </div>
