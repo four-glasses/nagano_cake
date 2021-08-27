@@ -1,1 +1,20 @@
-<h1>カスタマー側の商品詳細ページ</h1>
+<div class = "row">
+  <div class = "col-6">
+    <%= attachment_image_tag @item, :image, class: "img-fluid"%>
+  </div>
+  <div class = "col-6">
+    <h1 class = "mb-3">
+      <font face = "F66筆みょうほん"><%= @item.name %></font>
+    </h1>
+    <div class = "h-75 d-inline-block">
+      <p class = "mt-3">
+        <font face = "F66OliveBdance"><%= @item.items_explanation %></font>
+      </p>
+    </div>
+    <div>
+      <h2>
+        ¥<%= @item.non_taxed_price %>
+      </h2>
+    </div>
+  </div>
+</div>
