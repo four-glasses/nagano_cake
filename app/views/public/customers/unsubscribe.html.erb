@@ -2,6 +2,8 @@
   <div class = "row py-5">
     <div class = "col-6 mx-auto">
       <h4>本当に退会しますか？</h4>
+      <p><%= link_to "退会しない", root_path, class: "btn btn-primary" %></p>
+      <p><%= link_to "退会する", customers_withdraw_path, class: "btn btn-danger", method: :patch %></p>
     </div>
   </div>
 </section>
