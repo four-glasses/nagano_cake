@@ -27,19 +27,23 @@ Rails.application.routes.draw do
   root :to     => "public/homes#top"
   get "/about" => "public/homes#about"
   resources :items, module: :public, :only => [:index,:show]
-  devise_for :customers, controllers: {
-    sessions:      'public/sessions',
-    passwords:     'public/passwords',
-    registrations: 'public/registrations'
-  }
+
 
   get "/customers/my_page"     => "public/customers#show"
   get "/customers/unsubscribe" => "public/customers#unsubscribe"
   patch "/customers/withdraw"  => "public/customers#withdraw"
 
   resources :orders, module: :public, :only => [:index,:create,:new,:comfirm,:show,:complete]
+  resources :cart_items, module: :public, :only => [:index,:create,:update,:destroy,:destroy_all]
 
   resource :customers, module: :public, :only => [:edit, :update]
 
   resources :deliveries, module: :public, :only => [:index,:create,:edit,:update,:destroy]
+
+ devise_for :customers, controllers: {
+    sessions:      'public/sessions',
+    passwords:     'public/passwords',
+    registrations: 'public/registrations'
+  }
+
 end
