@@ -1,5 +1,5 @@
 class Admin::OrdersController < ApplicationController
-  # before actionは後ほど追記
+  before_action :authenticate_admin!
   
   def index
     @orders = Order.all
