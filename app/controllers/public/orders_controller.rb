@@ -20,8 +20,6 @@ def comfirm
 end
 
 def complete
-  cart_items = current_customer.cart_items
-  cart_items.destroy_all
 end
 
 def create

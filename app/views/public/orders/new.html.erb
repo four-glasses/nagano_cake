@@ -1,4 +1,4 @@
-<%= form_with model: @order, local: true do |form| %>
+<%= form_with model: @order, url: orders_comfirm_path, method: :post, local: true do |form| %>
 
 <main>
   <h1>注文情報入力</h1>
@@ -31,8 +31,15 @@
   <%= form.text_field :postal_code %>
 <label for="inputAddress">住所</label>
   <%= form.text_field :address %>
-
 </div>
+
+<div class="form-group">
+  <div class="col-xs-2 col-xs-offset-5">
+    <%= form.submit "確認画面へ進む", class: "btn btn-primary" %>
+  </div>
+</div>
+
+
 <% end %>
 
 </main>

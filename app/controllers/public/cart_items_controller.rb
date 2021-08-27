@@ -38,8 +38,6 @@ end
 def create
     @cart_item = CartItem.new(item_params)
     @cart_item.customer_id = current_customer.id
-    #税抜の小計価格を設定
-    @cart_item.items = @cart_item.items.tax_price * @cart_item.amount
     @cart_item.save
     redirect_to cart_items_path
 end
