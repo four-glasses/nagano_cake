@@ -98,17 +98,11 @@ DMMWEBCAMP チーム開発成果物　『nagano cake』　　　　作成期間�
 　Cloud9
 ■フレームワーク  
 　Ruby on Rails
-■使用gem
-・
-・
-・
-・
-・
 
  
 # 開発者
 ・安藤　佑馬 
 ・壇上　武  
 ・山本 勝生  
-・千田　絋絋輝  
+・千田　絋輝  
 
