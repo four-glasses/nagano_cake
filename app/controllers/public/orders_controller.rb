@@ -1,67 +1,55 @@
 class Public::OrdersController < ApplicationController
 
 def index
-  @customer = current_customer
-  @orders = @customer.orders
-  unless current_customer.nil? || current_customer.id == @customer.id
-    flash[:warning] = "アクセス権がありません"
-    redirect_to orders_path(id: current_customer.id)
-  end
+  @orders = current_customer.orders.all
 end
 
 def comfirm
-@order = Order.find(params[:id])
-		unless current_customer.nil? || current_customer.id == @order.customer_id
-    		flash[:warning] = "アクセス権がありません"
-			redirect_to orders_path(id: current_customer.id)
-		end
-		@items = @order.ordered_items
-
+@order = Order.new
+@order.address = params[:add]
+@order.postal_code = params[:postal_code]
+@order.name = params[:name]
+@order.pay_status = params[:receive_pay].to_i
+@cart_items = current_customer.cart_items
+if params[:address_select] == "0"
+      @order.postal_code = current_customer.postal_code
+      @order.address = current_customer.address
+      @order.name = current_customer.last_name + current_customer.first_name
+elsif params[:address_select] == "1"
+      @address = Delivery.find_by(address:params[:address])
+      @order.postal_code = @address.postal_code
+      @order.address = @address.address
+elsif params[:address_select] == "2"
+      @address = current_customer.deliveries.new
+      @address.postal_code = @order.postal_code
+      @address.address = @order.address
+      @address.name = @order.name
+      @address.save
+end
 end
 
 def complete
-  cart_items = current_customer.cart_items
-  cart_items.destroy_all
 end
 
 def create
-@order = Order.new(order_params)
-		@customer = current_customer
-		@ads = @customer.addresses
-			if params[:_add] == "usersAdd"
-				@order.address = @customer.address
-				@order.last_name = @customer.last_name
-				@order.first_name = @customer.first_name
-				@order.last_name_kana = @customer.last_name_kana
-				@order.first_name_kana = @customer.first_name_kana
-				@order.postal_code = @customer.postal_code
-			elsif params[:_add] == "shipAdds"
-				@ad = @ads.find(params[:Address][:id])
-				@order.address = @ad.address
-				@order.last_name = @ad.last_name
-				@order.first_name = @ad.first_name
-				@order.last_name_kana = @ad.last_name_kana
-				@order.first_name_kana = @ad.first_name_kana
-				@order.postal_code = @ad.postal_code
-			elsif params[:_add] == "newAdd"
-				@ad = Deliveries.new
-				@ad.customer_id = @customer.id
-				@ad.address = params[:deliveries][:address]
-				@ad.last_name = params[:deliveries][:last_name]
-				@ad.first_name = params[:deliveries][:first_name]
-				@ad.last_name_kana = params[:deliveries][:last_name_kana]
-				@ad.first_name_kana = params[:deliveries][:first_name_kana]
-				@ad.postal_code = params[:deliveries][:postal_code]
-				@ad.phone = params[:deliveries][:phone]
-				@ad.save
 
-				@order.ship_address = params[:ship_to_address][:address]
-				@order.last_name = params[:ship_to_address][:last_name]
-				@order.first_name = params[:ship_to_address][:first_name]
-				@order.last_name_kana = params[:ship_to_address][:last_name_kana]
-				@order.first_name_kana = params[:ship_to_address][:first_name_kana]
-				@order.ship_postal_code = params[:ship_to_address][:postal_code]
-			end
+@order = current_customer.orders.new(order_params)
+    @cart_items = current_customer.cart_items.all
+    if  @order.save
+        @cart_items.each do |cart_item|
+          @order_items = @order.order_items.new
+          @order_items.item_id = cart_item.item.id
+          @order_items.tax_price = cart_item.item.non_taxed_price
+          @order_items.amount = cart_item.amount
+          @order_items.production_status = cart_item.production_status
+          @order_items.save
+        end
+      current_customer.cart_items.destroy_all
+      redirect_to complete_orders_path
+    else
+      @address = current_customer.addresses.all
+      render :new
+    end
 
 end
 

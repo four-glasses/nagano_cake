@@ -10,18 +10,31 @@
 				<th>小計</th>
 			</tr>
 
-<!--商品名を持ってくるにはitemsと繋げる必要がある?-->
-
-		<% @items.each do |item| %>
-			<tr>
-				<td><%= item.items.name %></td>
-				<td><%= addTax(item.items.price) %></td>
-				<td><%= item.amount %></td>
-				<td><%= addTax(item.tax_price) %></td>
-			</tr>
+        <% @sum=0 %>
+		<% @cart_items.each do |ci| %>
+		<tr>
+			<td>
+				<%= attachment_image_tag ci.item, :image, size: "60x60" %>
+				<%= ci.item.name %>
+				<% @sum+=addTax(ci.item)* ci.amount %>
+			</td>
+			<td>
+	 			<%= hidden_field_tag :item_price, ci.item.non_taxed_price %>
+				<%= (addTax(ci.item)* ci.amount).floor %>
+			</td>
+			<td>
+				<%= hidden_field_tag "items_id[#{ci.id}]", ci.item_id %>
+				<%= number_field_tag "amount[#{ci.id}]", ci.amount, in: 1..10 %>
+			</td>
+			<td>
+				<%= hidden_field_tag "tax_price[#{ci.id}]", addTax(ci.item) %>
+				<%= (addTax(ci.item)).floor %>
+			</td>
 		<% end %>
 		</table>
 	</div>
+
+<% @cart_items.each do |ci| %>
 
 	<div class="col-xs-4">
 		<table class="table table-bordered">
@@ -31,16 +44,16 @@
 			</tr>
 			<tr>
 				<th>商品合計</th>
-				<td><%= addTax(@items.sum(:tax_price)) %></td>
+				<td><%= (addTax(ci.item)*ci.amount).floor %></td>
 			</tr>
 			<tr>
 				<th>請求金額</th>
-				<td><%= addTax(@items.sum(:tax_price))+800 %></td>
+				<td><%= (addTax(ci.item)*ci.amount+800).floor %></td>
 			</tr>
 		</table>
 	</div>
 </div>
-
+<% end %>
 <h4>支払い方法</h4>
 	<p><%= @order.pay_status %></p>
 
@@ -51,7 +64,12 @@
 
 <hr>
 
+<%= form_with model: @order,  url: orders_path, local: true do |f|%>
+<%= f.hidden_field :postal_code, :value =>@order.postal_code %>
+<%= f.hidden_field :address, :value => @order.address %>
+<%= f.hidden_field :address, :value => @order.name %>
 <div class="text-center">
-	<%= link_to '注文を確定する', orders_finish_path, class:"btn btn-success" %>
+	<%= f.submit '注文を確定する',  class:"btn btn-success" %>
 </div>
+<% end %>
 </div>
