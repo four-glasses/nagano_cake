@@ -2,7 +2,7 @@
 
 class Admin::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
-  
+  protect_from_forgery
 
   # GET /resource/sign_in
   # def new
@@ -19,10 +19,7 @@ class Admin::SessionsController < Devise::SessionsController
   #   super
   # end
   
-  def destroy
-    reset_session
-    redirect_to new_admin_session_path
-  end
+  
 
   # protected
 
