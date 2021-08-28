@@ -1,6 +1,7 @@
 class Admin::HomesController < ApplicationController
+ 
 
   def top
-    # 何を表示するかは未定
+  @orders = Order.where("created_at" === Date.today)
   end
 end
