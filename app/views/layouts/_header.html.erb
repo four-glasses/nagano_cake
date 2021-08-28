@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-6">
         <h1 class="sample"><%= link_to image_tag("rogo.png", class:"img-fluid", size: "100x50"), root_path, data: {"turbolinks" => false}, style: "font-family: HiraMinPro-W6; color: #000000;" %></h1>
-        
+
       </div>
 
       <div class="col-6">
@@ -13,12 +13,13 @@
             <tr>
             <td style="font-family: HiraMinPro-W6; margin-top: 30px;">
               ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん！
-        </td>
+            </td>
             <td><%= link_to "マイページ", customers_my_page_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
             <td style="font-family: Osaka; margin-top: 15px; color: #696969;">|</td>
             <td><%= link_to "商品一覧", items_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
             <td style="font-family: Osaka; margin-top: 15px; color: #696969;">|</td>
-
+            <td><%= link_to "カート", cart_items_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
+            <td style="font-family: Osaka; margin-top: 15px; color: #696969;">|</td>
             <td><%= link_to "About", about_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
             <td style="font-family: Osaka; margin-top: 15px; color: #696969;">|</td>
             <td><%= link_to "ログアウト", destroy_customer_session_path, method: :delete, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
@@ -28,11 +29,11 @@
 
             <!-- 管理者がログインしている時 -->
             <tr>
-            <td><%= link_to "商品一覧", admin_item_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
+            <td><%= link_to "商品一覧", admin_items_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
             <td style="font-family: Osaka; margin-top: 15px; color: #696969;">|</td>
             <td><%= link_to "会員一覧", admin_customers_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
             <td style="font-family: Osaka; margin-top: 15px; color: #696969;">|</td>
-            <td><%= link_to "注文履歴一覧", admin_order_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
+            <td><%= link_to "注文履歴一覧", admin_orders_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
             <td style="font-family: Osaka; margin-top: 15px; color: #696969;">|</td>
             <td><%= link_to "ジャンル一覧", admin_genres_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></td>
             <td style="font-family: Osaka; margin-top: 15px; color: #696969;">|<td>
