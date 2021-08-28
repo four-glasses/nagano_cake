@@ -18,6 +18,11 @@ class Admin::SessionsController < Devise::SessionsController
   # def destroy
   #   super
   # end
+  
+  def destroy
+    reset_session
+    redirect_to new_admin_session_path
+  end
 
   # protected
 
