@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     root :to => 'homes#top'
     resources :items, only: [:show, :index, :new, :create, :edit, :update]
     resources :orders, only: [:index, :show, :update]
-    resources :order_details, only: [:update]
+    resources :order_item, only: [:update]
     resources :customers,only: [:index,:show,:edit,:update]
     resources :genres,   only: [:index,:create,:edit,:update, :show]
   end
@@ -24,12 +24,12 @@ Rails.application.routes.draw do
   get "/about" => "public/homes#about"
   resources :items, module: :public, :only => [:index,:show]
 
-
   get "/customers/my_page"     => "public/customers#show"
   get "/customers/unsubscribe" => "public/customers#unsubscribe"
   patch "/customers/withdraw"  => "public/customers#withdraw"
 
   resources :orders, module: :public, :only => [:index,:create,:new,:comfirm,:show,:complete]
+
   resources :cart_items, module: :public, :only => [:index,:create,:update,:destroy,:destroy_all]
 
   resource :customers, module: :public, :only => [:edit, :update]
