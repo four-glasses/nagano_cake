@@ -31,12 +31,16 @@ Rails.application.routes.draw do
 
   resources :orders, module: :public, :only => [:index,:create,:new,:show]do
    collection do
-    get :comfirm
+    post :comfirm
     get :complete
   end
  end
 
-  resources :cart_items, module: :public, :only => [:index,:create,:update,:destroy,:destroy_all]
+  resources :cart_items, module: :public, :only => [:index,:create,:update,:destroy]do
+   collection do
+   delete :destroy_all
+   end
+  end
 
   resource :customers, module: :public, :only => [:edit, :update]
 
