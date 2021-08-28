@@ -1,18 +1,19 @@
 <div class = "container">
-
+    <div class="row">
+      <div class="ec-cart-index-main">
 		<h2>ショッピングカート</h2>
 
-		<%= link_to cart_items_path, method: :delete do %>
+		<%= link_to destroy_all_cart_items_path, method: :delete do %>
 			<span class="btn btn-danger">カートを空にする</span>
 		<% end %>
 
 	<table class="table table-bordered">
 		<tr style="background:#dad7d7; border: 1px solid #fff;">
-			<th class = "col-4">商品名</th>
-			<th>単価</th>
-			<th>数量</th>
-			<th>小計</th>
-			<th></th>
+			<th class="active text-left" style="width:300px">商品名</th>
+            <th class="active text-left" style="width:100px">単価（税込）</th>
+            <th class="active text-left" style="width:60px">数量</th>
+            <th class="active text-left" style="width:80px">小計</th>
+            <th class="active" style="width:120px"></th>
 		</tr>
 		<% @sum=0 %>
 	 <% @cart_items.each do |ci| %>
@@ -67,11 +68,5 @@
 		<% end %>
 
 	</div>
-
-	<script>
-		$(function () {
-		$('[data-toggle="tooltip"]').tooltip();
-	});
-	</script>
-
-</div>
+  </div>
+ </div>

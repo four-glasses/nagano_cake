@@ -28,9 +28,18 @@ Rails.application.routes.draw do
   get "/customers/unsubscribe" => "public/customers#unsubscribe"
   patch "/customers/withdraw"  => "public/customers#withdraw"
 
-  resources :orders, module: :public, :only => [:index,:create,:new,:comfirm,:show,:complete]
+  resources :orders, module: :public, :only => [:index,:create,:new,:show]do
+   collection do
+    post :comfirm
+    get :complete
+  end
+ end
 
-  resources :cart_items, module: :public, :only => [:index,:create,:update,:destroy,:destroy_all]
+  resources :cart_items, module: :public, :only => [:index,:create,:update,:destroy]do
+   collection do
+   delete :destroy_all
+   end
+  end
 
   resource :customers, module: :public, :only => [:edit, :update]
 
