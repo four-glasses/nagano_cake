@@ -54,11 +54,7 @@
                       <td><%= order_item.amount %></td>
                       <td><%= (order_item.tax_price * order_item.amount).floor.to_s(:delimited, delimiter: ',') %></td>
                       <td>
-<<<<<<< HEAD
-                        <%= form_for (order_detail), url:admins_order_detail_path(order_detail) do |f|  %>
-=======
                         <%= form_for (order_item), url:admin_order_item_path(order_item) do |f|  %>
->>>>>>> 7cd935b700178ae67940f747e008b14d69e3c8f3
                         <%= f.select :production_status, OrderItem.production_status.keys.to_a %>
                         <%= f.submit '更新',class:"btn btn-success" %>
                         <% end %>
